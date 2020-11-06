@@ -3,24 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/start2">
+    app:startDestination="@id/dash">
 
     <fragment
-        android:id="@+id/start2"
-        android:name="com.example.tuneup.Start"
-        android:label="fragment_start2"
-        tools:layout="@layout/fragment_start2" >
+        android:id="@+id/notification"
+        android:name="com.example.tuneup.Notification"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" >
         <action
-            android:id="@+id/action_start2_to_home2"
-            app:destination="@id/home2" />
+            android:id="@+id/action_notification_to_dash"
+            app:destination="@id/dash" />
     </fragment>
     <fragment
-        android:id="@+id/home2"
-        android:name="com.example.tuneup.Home"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:id="@+id/dash"
+        android:name="com.example.tuneup.Dash"
+        android:label="fragment_dash"
+        tools:layout="@layout/fragment_dash" >
         <action
-            android:id="@+id/action_home2_to_start2"
-            app:destination="@id/start2" />
+            android:id="@+id/action_dash_to_notification"
+            app:destination="@id/notification" />
     </fragment>
 </navigation>
