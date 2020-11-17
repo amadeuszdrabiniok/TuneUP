@@ -22,5 +22,29 @@
         <action
             android:id="@+id/action_dash_to_notification"
             app:destination="@id/notification" />
+        <action
+            android:id="@+id/action_dash_to_settings"
+            app:destination="@id/settings" />
+        <action
+            android:id="@+id/action_dash_to_teacherCategory"
+            app:destination="@id/teacherCategory" />
+    </fragment>
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.example.tuneup.Settings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settings_to_dash"
+            app:destination="@id/dash" />
+    </fragment>
+    <fragment
+        android:id="@+id/teacherCategory"
+        android:name="com.example.tuneup.TeacherCategory"
+        android:label="fragment_teacher_category"
+        tools:layout="@layout/fragment_teacher_category" >
+        <action
+            android:id="@+id/action_teacherCategory_to_dash"
+            app:destination="@id/dash" />
     </fragment>
 </navigation>

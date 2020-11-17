@@ -15,14 +15,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 
-public class Dash extends Fragment {
+public class Settings extends Fragment {
 
 
-
-    public Dash() {
+    public Settings() {
         // Required empty public constructor
     }
-
 
 
 
@@ -30,7 +28,7 @@ public class Dash extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dash, container, false);
+        return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
     @Override
@@ -39,35 +37,15 @@ public class Dash extends Fragment {
 
         final NavController navController = Navigation.findNavController(view);
 
-        ImageButton button = view.findViewById(R.id.noti);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_dash_to_notification);
-            }
-
-
-        });
-
-        ImageButton button2 = view.findViewById(R.id.settings);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_dash_to_settings);
-            }
-
-
-        });
-
-        Button button3 = view.findViewById(R.id.teacherCategoryBtt);
+        ImageButton button3 = view.findViewById(R.id.backButton);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_dash_to_teacherCategory);
+                navController.navigate(R.id.action_settings_to_dash);
             }
 
 
         });
-
     }
+
 }
