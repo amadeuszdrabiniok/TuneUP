@@ -69,5 +69,15 @@ public class Dash extends Fragment {
 
         });
 
+        Button button4 = view.findViewById(R.id.ProfileBtt);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_dash_to_profile);
+            }
+
+
+        });
+
     }
 }

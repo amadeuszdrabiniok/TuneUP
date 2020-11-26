@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_dash_to_teacherCategory"
             app:destination="@id/teacherCategory" />
+        <action
+            android:id="@+id/action_dash_to_profile"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/settings"
@@ -45,6 +48,15 @@
         tools:layout="@layout/fragment_teacher_category" >
         <action
             android:id="@+id/action_teacherCategory_to_dash"
+            app:destination="@id/dash" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.tuneup.profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_to_dash"
             app:destination="@id/dash" />
     </fragment>
 </navigation>
