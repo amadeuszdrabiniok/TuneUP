@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_teacherCategory_to_dash"
             app:destination="@id/dash" />
+        <action
+            android:id="@+id/action_teacherCategory_to_navigation2"
+            app:destination="@id/navigation2" />
     </fragment>
     <fragment
         android:id="@+id/profile"
@@ -59,4 +62,12 @@
             android:id="@+id/action_profile_to_dash"
             app:destination="@id/dash" />
     </fragment>
+    <navigation android:id="@+id/navigation2"
+        app:startDestination="@id/chat">
+        <activity
+            android:id="@+id/chat"
+            android:name="com.example.tuneup.chat"
+            android:label="activity_chat"
+            tools:layout="@layout/activity_chat" />
+    </navigation>
 </navigation>

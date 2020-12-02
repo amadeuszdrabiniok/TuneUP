@@ -28,38 +28,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/messageField"
-            android:layout_width="381dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="24dp"
-            android:gravity="bottom"
-            android:hint="@string/messagePlaceholder"
-            app:layout_constraintBottom_toTopOf="@+id/messageSendButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/backButton2" />
-
-        <Button
-            android:id="@+id/messageSendButton"
+        <ImageButton
+            android:id="@+id/goToMessageButtonTEST"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:onClick="sendMessage"
-            android:text="@string/sendButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_marginTop="32dp"
+            android:src="@android:drawable/ic_dialog_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/messageInputBox"
-            android:layout_width="299dp"
-            android:layout_height="42dp"
-            android:layout_marginBottom="16dp"
-            android:ems="10"
-            android:hint="@string/messageInputPlaceholder"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/messageSendButton"
-            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
