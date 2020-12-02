@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">TuneUP</string>
     <string name="name">TuneUP</string>
+    <string name="sendButton">Send</string>
+    <string name="messagePlaceholder">Message will appear here!</string>
+    <string name="messageInputPlaceholder">Type your message</string>
 </resources>
