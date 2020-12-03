@@ -28,8 +28,13 @@
 
     <TextView
         android:id="@+id/messageOutput"
+        android:layout_width="306dp"
+        android:layout_height="40dp" />
+
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="491dp" />
+        android:layout_height="413dp" />
 
 
 </RelativeLayout>

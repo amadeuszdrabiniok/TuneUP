@@ -2,7 +2,9 @@ package com.example.tuneup;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class chat extends AppCompatActivity {
@@ -23,6 +26,9 @@ public class chat extends AppCompatActivity {
     private EditText messageInput;
     private TextView messageOutput;
     private String messageString;
+    private ListView list;
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> arrayList;
 
 
     @Override
@@ -30,8 +36,15 @@ public class chat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+
+        list = (ListView) findViewById(R.id.listView);
+        arrayList = new ArrayList<String>();
         messageInput = findViewById(R.id.messageInput);
         messageOutput = findViewById(R.id.messageOutput);
+
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, arrayList);
+
+        list.setAdapter(adapter);
 
         try {
             databaseReference = FirebaseDatabase.getInstance().getReference("Message");
@@ -41,9 +54,8 @@ public class chat extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                     messageString = snapshot.getValue().toString();
-                    String[] stringMessageArray = messageString.split("=",2);
-                    messageOutput.setText(stringMessageArray[1]);
-
+                    arrayList.add(messageString);
+                    adapter.notifyDataSetChanged();
                 }
 
                 @Override
