@@ -34,6 +34,8 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
+        android:transcriptMode="alwaysScroll"
+        android:stackFromBottom="true"
         android:layout_height="413dp" />
 
 
