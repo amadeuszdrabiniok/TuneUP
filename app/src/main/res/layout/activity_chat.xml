@@ -8,11 +8,6 @@
     android:orientation="vertical"
     tools:context=".chat">
 
-    <ListView
-        android:id="@+id/messageList"
-        android:layout_width="match_parent"
-        android:layout_height="500dp" />
-
     <EditText
         android:id="@+id/messageInput"
         android:hint="@string/messageInputPlaceholder"
@@ -31,6 +26,10 @@
         android:onClick="sendButton"
         android:layout_height="50dp" />
 
+    <TextView
+        android:id="@+id/messageOutput"
+        android:layout_width="match_parent"
+        android:layout_height="491dp" />
 
 
 </RelativeLayout>
