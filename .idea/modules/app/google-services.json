@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "823640536839-jrda66ct2m9e3p80u354s15a9l90f54f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tuneup",
+            "certificate_hash": "88e7499bffd48ad9876a3cbb1e43d74c32b57cdb"
+          }
+        },
+        {
           "client_id": "823640536839-vlej38agnflde2c96jr6s9ivf5gdns18.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
