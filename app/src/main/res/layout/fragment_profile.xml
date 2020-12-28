@@ -34,8 +34,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="-171dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-64dp"
             tools:visibility="visible">
 
 
@@ -79,52 +79,63 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:visibility="visible" />
 
-            <EditText
+            <TextView
                 android:id="@+id/nameInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="100dp"
-                android:ems="10"
-                android:hint="Name"
-                android:inputType="textPersonName"
+                android:layout_width="365dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="165dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="184dp"
+                android:layout_marginBottom="504dp"
+                android:text="Nickname"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.466"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_image"
-                tools:visibility="visible" />
+                app:layout_constraintVertical_bias="0.0" />
 
-            <EditText
-                android:id="@+id/emailInput"
-                android:layout_width="208dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="101dp"
-                android:ems="10"
-                android:hint="email"
-                android:inputType="textEmailAddress"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameInput"
-                tools:visibility="visible" />
-
-            <EditText
+            <TextView
                 android:id="@+id/phoneInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="101dp"
-                android:ems="10"
-                android:hint="phone"
-                android:inputType="phone"
+                android:layout_width="361dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="176dp"
+                android:layout_marginTop="324dp"
+                android:layout_marginEnd="196dp"
+                android:text="phone"
+                android:textAlignment="center"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailInput"
-                tools:visibility="visible" />
+                app:layout_constraintHorizontal_bias="0.468"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/emailInput"
+                android:layout_width="391dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="181dp"
+                android:layout_marginTop="268dp"
+                android:layout_marginEnd="196dp"
+                android:text="email"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.478"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/imageButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="53dp"
-                android:layout_marginTop="443dp"
+                android:layout_marginTop="456dp"
+                android:layout_marginEnd="75dp"
                 android:src="@drawable/audio"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -132,31 +143,31 @@
                 android:id="@+id/imageButton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="75dp"
-                android:layout_marginTop="59dp"
+                android:layout_marginStart="188dp"
+                android:layout_marginTop="456dp"
                 android:src="@drawable/audio"
-                app:layout_constraintStart_toEndOf="@+id/imageButton2"
-                app:layout_constraintTop_toBottomOf="@+id/phoneInput" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/imageButton4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="70dp"
-                android:layout_marginTop="59dp"
+                android:layout_marginTop="456dp"
+                android:layout_marginEnd="60dp"
                 android:src="@drawable/audio"
-                app:layout_constraintStart_toEndOf="@+id/imageButton3"
-                app:layout_constraintTop_toBottomOf="@+id/phoneInput" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/save"
                 android:layout_width="92dp"
                 android:layout_height="39dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="170dp"
+                android:layout_marginTop="392dp"
+                android:layout_marginEnd="160dp"
                 android:text="save"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phoneInput" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
