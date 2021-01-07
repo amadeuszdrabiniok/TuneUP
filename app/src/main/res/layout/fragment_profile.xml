@@ -158,16 +158,15 @@
 
             <EditText
                 android:id="@+id/Desc"
-                android:layout_width="325dp"
-                android:layout_height="178dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="112dp"
+                android:layout_width="344dp"
+                android:layout_height="184dp"
+                android:layout_marginTop="440dp"
+                android:layout_marginEnd="32dp"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Description"
-                android:textAlignment="textStart"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
