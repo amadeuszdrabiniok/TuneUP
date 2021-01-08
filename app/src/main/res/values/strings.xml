@@ -4,4 +4,15 @@
     <string name="sendButton">Wyślij</string>
     <string name="messagePlaceholder">Message will appear here!</string>
     <string name="messageInputPlaceholder">Wpisz wiadomość tutaj!</string>
+
+    <string-array name="categories">
+        <item>Teacher</item>
+        <item>Band</item>
+        <item>Band member</item>
+        <item>Session musician</item>
+        <item>Studio</item>
+        <item>Songwriter</item>
+        <item>Producer</item>
+    </string-array>
+
 </resources>
