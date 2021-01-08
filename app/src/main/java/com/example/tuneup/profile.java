@@ -76,6 +76,7 @@ public class profile extends Fragment {
     FirebaseUser user, fuser;
     DatabaseReference reference;
     String mUri;
+    String category;
 
 
     @Override
@@ -142,7 +143,7 @@ public class profile extends Fragment {
                     fullName.setText(documentSnapshot.getString("fName"));
                     email.setText(documentSnapshot.getString("email"));
                     mDesc.setText(documentSnapshot.getString("Desc"));
-
+                    category=documentSnapshot.getString("category");
                 }
             }
         });
@@ -186,6 +187,7 @@ public class profile extends Fragment {
                 user.put("email",memail);
                 user.put("phone",mphone);
                 user.put("Desc",Desc);
+                user.put("category", category);
 
                 documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
