@@ -69,30 +69,30 @@ public class TeacherCategory extends Fragment {
         FirebaseFirestore fStore = FirebaseFirestore.getInstance();
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users");
-        final String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        final DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(userId);
-
-
-
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 mUsers.clear();
                 for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+
+                    String userId = snapshot1.getKey();
                     final Userm user = snapshot1.getValue(Userm.class);
 
-
-
+                    DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document(userId);
                     documentReference.addSnapshotListener(getActivity(), new EventListener<DocumentSnapshot>() {
                         @Override
                         public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+
                             if(documentSnapshot.exists()){
                                 user.setUsername(documentSnapshot.getString("fName"));
+                                if (documentSnapshot.getString("category").equals("Teacher")){
+                                    mUsers.add(user);
+                                }
                             }
                         }
                     });
-                    mUsers.add(user);
+
                 }
                 userAdapter = new UserAdapter(getContext(), mUsers);
                 recyclerView.setAdapter(userAdapter);

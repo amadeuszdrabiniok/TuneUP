@@ -59,7 +59,7 @@ public class Dash extends Fragment {
 
         });
 
-        Button button3 = view.findViewById(R.id.teacherCategoryBtt);
+        Button button3 = view.findViewById(R.id.teacherCategoryBtn);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

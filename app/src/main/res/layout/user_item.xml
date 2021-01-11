@@ -25,8 +25,8 @@
         android:textSize="20sp"/>
 
     <Button
-        android:id="@+id/teacherCategoryBtt"
+        android:id="@+id/teacherCategoryBtn"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:backgroundTint="#00FFFFFF"/>
+        android:backgroundTint="@color/cardview_shadow_end_color" />
 </RelativeLayout>
