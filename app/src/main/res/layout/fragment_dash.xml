@@ -82,7 +82,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/other1"
+                    android:id="@+id/band"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="5dp"
@@ -114,7 +114,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/otherCategoryBtt"
+                        android:id="@+id/bandCategoryBtt"
                         android:layout_width="450dp"
                         android:layout_height="175dp"
                         android:backgroundTint="#00FFFFFF"
@@ -128,7 +128,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/other2"
+                    android:id="@+id/bandMember"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="5dp"
@@ -160,7 +160,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/other2CategoryBtt"
+                        android:id="@+id/bandmemberCategoryBtt"
                         android:layout_width="450dp"
                         android:layout_height="175dp"
                         android:backgroundTint="#00FFFFFF"
@@ -173,7 +173,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/other3"
+                    android:id="@+id/sessionMusician"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="5dp"
@@ -203,7 +203,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/other3CategoryBtt"
+                        android:id="@+id/sessionmusicianCategoryBtt"
                         android:layout_width="450dp"
                         android:layout_height="175dp"
                         android:backgroundTint="#00FFFFFF"
@@ -216,7 +216,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/other4"
+                    android:id="@+id/Studio"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="5dp"
@@ -247,7 +247,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/other4CategoryBtt"
+                        android:id="@+id/studioCategoryBtt"
                         android:layout_width="450dp"
                         android:layout_height="175dp"
                         android:backgroundTint="#00FFFFFF"
@@ -260,7 +260,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/other5"
+                    android:id="@+id/songwriter"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="5dp"
@@ -291,7 +291,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/other5CategoryBtt"
+                        android:id="@+id/songwriterCategoryBtt"
                         android:layout_width="450dp"
                         android:layout_height="175dp"
                         android:backgroundTint="#00FFFFFF"
@@ -304,7 +304,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/other6"
+                    android:id="@+id/producer"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="5dp"
@@ -335,7 +335,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/other6CategoryBtt"
+                        android:id="@+id/producerCategoryBtt"
                         android:layout_width="450dp"
                         android:layout_height="175dp"
                         android:backgroundTint="#00FFFFFF"
