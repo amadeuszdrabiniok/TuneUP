@@ -16,9 +16,13 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.tuneup.Dash;
+import com.example.tuneup.Dashboard;
+import com.example.tuneup.Login;
 import com.example.tuneup.Model.Userm;
 import com.example.tuneup.OthersProfile;
 import com.example.tuneup.R;
+import com.example.tuneup.Users;
 import com.google.firebase.firestore.auth.User;
 
 import java.util.List;
@@ -53,9 +57,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         holder.itemView.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, OthersProfile.class);
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, Users.class);
                 intent.putExtra("userid", user.getId());
+                intent.putExtra("URL", user.getImageURL());
                 mContext.startActivity(intent);
             }
         });

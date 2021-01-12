@@ -86,6 +86,8 @@ public class TeacherCategory extends Fragment {
 
                             if(documentSnapshot.exists()){
                                 user.setUsername(documentSnapshot.getString("fName"));
+                                user.setId(documentSnapshot.getId());
+
                                 if (documentSnapshot.getString("category").equals("Teacher")){
                                     mUsers.add(user);
                                 }

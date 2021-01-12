@@ -6,21 +6,16 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.tuneup.Model.Userm;
@@ -49,73 +44,60 @@ import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static android.app.Activity.RESULT_OK;
-
-
-public class OthersProfile extends Fragment {
-
+public class Users extends AppCompatActivity {
     private static final int IMAGE_REQUEST=1;
     private Uri imageUri;
     private StorageTask uploadTask;
     public static final String TAG = "TAG";
     CircleImageView profile_image;
     FirebaseFirestore fStore;
-    TextView result;
-    Button  google;
+
     EditText mDesc;
     TextView fullName,email,phone;
     StorageReference storageReference;
     String userId;
     FirebaseAuth fAuth;
-
+    FirebaseUser user;
     DatabaseReference reference;
     String mUri;
     String category;
     Intent intent;
+    FirebaseUser fuser;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        profile_image=view.findViewById(R.id.profile_image);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_users);
 
-        intent = getActivity().getIntent();
-    String userId = intent.getStringExtra("userid");
+        intent = getIntent();
+        String userId = intent.getStringExtra("userid");
+        final String URL = intent.getStringExtra("URL");
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
 
-    reference = FirebaseDatabase.getInstance().getReference("users");
+        reference = FirebaseDatabase.getInstance().getReference("users");
 
         reference.addValueEventListener(new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            Userm mser = snapshot.getValue(Userm.class);
-            if (mser != null) {
-                if(mser.getImageURL().equals("imageURL")){
-                    profile_image.setImageResource(R.drawable.bez_nazwy_2);
-                }else
-                    Glide.with(getContext()).load(mser.getImageURL()).into(profile_image);
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                        Glide.with(getApplicationContext()).load(URL).into(profile_image);
+
+
             }
 
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
 
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-            Log.w(TAG, "Failed to read value.", error.toException());
-        }
-    });
+        mDesc = findViewById(R.id.Desc);
+        phone = findViewById(R.id.phoneInput);
+        fullName = findViewById(R.id.nameInput);
+        email = findViewById(R.id.emailInput);
 
-        return inflater.inflate(R.layout.fragment_profile, container, false);
-}
-
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        mDesc = view.findViewById(R.id.Desc);
-        phone = view.findViewById(R.id.phoneInput);
-        fullName = view.findViewById(R.id.nameInput);
-        email = view.findViewById(R.id.emailInput);
-
-        profile_image=view.findViewById(R.id.profile_image);
+        profile_image=findViewById(R.id.profile_image);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -127,7 +109,7 @@ public class OthersProfile extends Fragment {
 
 
         DocumentReference documentReference = fStore.collection("users").document(userId);
-        documentReference.addSnapshotListener(getActivity(), new EventListener<DocumentSnapshot>() {
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 if(documentSnapshot.exists()){
@@ -146,17 +128,7 @@ public class OthersProfile extends Fragment {
 
 
 
-        final NavController navController = Navigation.findNavController(view);
 
-        ImageButton button3 = view.findViewById(R.id.backbutton);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_othersProfile_to_teacherCategory);
-            }
-
-
-        });
 
 
         profile_image.setOnClickListener(new View.OnClickListener() {
@@ -177,13 +149,13 @@ public class OthersProfile extends Fragment {
     }
 
     private String getFileExtension(Uri uri){
-        ContentResolver contentResolver = getContext().getContentResolver();
+        ContentResolver contentResolver = getApplicationContext().getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
     private void uploadImage(){
-        final ProgressDialog pd =new ProgressDialog(getContext());
+        final ProgressDialog pd =new ProgressDialog(getApplicationContext());
         pd.setMessage("Uploading");
         pd.show();
 
@@ -208,7 +180,7 @@ public class OthersProfile extends Fragment {
                         mUri = downloadUri.toString();
 
 
-                        reference = FirebaseDatabase.getInstance().getReference("users").child(userId);
+                        reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("imageURL", mUri);
                         reference.updateChildren(map);
@@ -216,20 +188,20 @@ public class OthersProfile extends Fragment {
 
 
                     }else {
-                        Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
                     }
                     pd.dismiss();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     pd.dismiss();
                 }
             });
 
         }else {
-            Toast.makeText(getContext(), "No Image selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "No Image selected", Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -242,7 +214,7 @@ public class OthersProfile extends Fragment {
             imageUri = data.getData();
 
             if(uploadTask != null && uploadTask.isInProgress()){
-                Toast.makeText(getContext(), "Upload in Progress", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Upload in Progress", Toast.LENGTH_SHORT).show();
 
             }else{
                 uploadImage();
@@ -250,4 +222,4 @@ public class OthersProfile extends Fragment {
         }
     }
 
-}
+    }
