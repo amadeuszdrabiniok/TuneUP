@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_teacherCategory_to_navigation2"
             app:destination="@id/navigation2" />
+        <action
+            android:id="@+id/action_teacherCategory_to_othersProfile"
+            app:destination="@id/othersProfile" />
     </fragment>
     <fragment
         android:id="@+id/profile"
@@ -70,4 +73,12 @@
             android:label="activity_chat"
             tools:layout="@layout/activity_chat" />
     </navigation>
+    <fragment
+        android:id="@+id/othersProfile"
+        android:name="com.example.tuneup.OthersProfile"
+        android:label="OthersProfile" >
+        <action
+            android:id="@+id/action_othersProfile_to_teacherCategory"
+            app:destination="@id/teacherCategory" />
+    </fragment>
 </navigation>
