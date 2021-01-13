@@ -59,11 +59,68 @@ public class Dash extends Fragment {
 
         });
 
-        Button button3 = view.findViewById(R.id.teacherCategoryBtn);
-        button3.setOnClickListener(new View.OnClickListener() {
+        Button buttonBand = view.findViewById(R.id.bandCategoryBtt);
+        buttonBand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_dash_to_bandCategory);
+            }
+
+
+        });
+        Button buttonBandMember = view.findViewById(R.id.bandmemberCategoryBtt);
+        buttonBandMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_dash_to_bandMemberCategory);
+            }
+
+
+        });
+        Button buttonSessionMusician = view.findViewById(R.id.sessionmusicianCategoryBtt);
+        buttonSessionMusician.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_dash_to_sessionMusicianCategory);
+            }
+
+
+        });
+        Button buttonStudio = view.findViewById(R.id.studioCategoryBtt);
+        buttonStudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_dash_to_studioCategory);
+            }
+
+
+        });
+
+        Button buttonTeacher = view.findViewById(R.id.teacherCategoryBtn);
+        buttonTeacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_dash_to_teacherCategory);
+            }
+
+
+        });
+
+        Button buttonSongwriter = view.findViewById(R.id.songwriterCategoryBtt);
+        buttonSongwriter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_dash_to_songwriterCategory);
+            }
+
+
+        });
+
+        Button buttonProducer = view.findViewById(R.id.producerCategoryBtt);
+        buttonProducer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_dash_to_producerCategory);
             }
 
 

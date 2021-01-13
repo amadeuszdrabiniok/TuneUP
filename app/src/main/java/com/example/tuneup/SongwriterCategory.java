@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class TeacherCategory extends Fragment {
+public class SongwriterCategory extends Fragment {
 
     private RecyclerView recyclerView;
     private UserAdapter userAdapter;
@@ -39,9 +39,9 @@ public class TeacherCategory extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_teacher_category,container,false);
+        View view = inflater.inflate(R.layout.fragment_songwriter_category,container,false);
 
-        recyclerView = view.findViewById(R.id.recycler_view_teachers);
+        recyclerView = view.findViewById(R.id.recycler_view_songwriter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -74,7 +74,7 @@ public class TeacherCategory extends Fragment {
                                 user.setUsername(documentSnapshot.getString("fName"));
                                 user.setId(documentSnapshot.getId());
 
-                                if (documentSnapshot.getString("category").equals("Teacher")){
+                                if (documentSnapshot.getString("category").equals("Songwriter")){
                                     mUsers.add(user);
                                 }
                             }

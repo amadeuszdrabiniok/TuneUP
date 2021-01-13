@@ -31,6 +31,24 @@
         <action
             android:id="@+id/action_dash_to_profile"
             app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_dash_to_bandCategory"
+            app:destination="@id/bandCategory" />
+        <action
+            android:id="@+id/action_dash_to_sessionMusicianCategory"
+            app:destination="@id/sessionMusicianCategory" />
+        <action
+            android:id="@+id/action_dash_to_songwriterCategory"
+            app:destination="@id/songwriterCategory" />
+        <action
+            android:id="@+id/action_dash_to_bandMemberCategory"
+            app:destination="@id/bandMemberCategory" />
+        <action
+            android:id="@+id/action_dash_to_producerCategory"
+            app:destination="@id/producerCategory" />
+        <action
+            android:id="@+id/action_dash_to_studioCategory"
+            app:destination="@id/studioCategory" />
     </fragment>
     <fragment
         android:id="@+id/settings"
@@ -81,4 +99,34 @@
             android:id="@+id/action_othersProfile_to_teacherCategory"
             app:destination="@id/teacherCategory" />
     </fragment>
+    <fragment
+        android:id="@+id/bandCategory"
+        android:name="com.example.tuneup.BandCategory"
+        android:label="fragment_band_category"
+        tools:layout="@layout/fragment_band_category" />
+    <fragment
+        android:id="@+id/bandMemberCategory"
+        android:name="com.example.tuneup.BandMemberCategory"
+        android:label="fragment_bandmember_category"
+        tools:layout="@layout/fragment_bandmember_category" />
+    <fragment
+        android:id="@+id/producerCategory"
+        android:name="com.example.tuneup.ProducerCategory"
+        android:label="fragment_producer_category"
+        tools:layout="@layout/fragment_producer_category" />
+    <fragment
+        android:id="@+id/sessionMusicianCategory"
+        android:name="com.example.tuneup.SessionMusicianCategory"
+        android:label="fragment_sessionmusician_category"
+        tools:layout="@layout/fragment_sessionmusician_category" />
+    <fragment
+        android:id="@+id/songwriterCategory"
+        android:name="com.example.tuneup.SongwriterCategory"
+        android:label="fragment_songwriter_category"
+        tools:layout="@layout/fragment_songwriter_category" />
+    <fragment
+        android:id="@+id/studioCategory"
+        android:name="com.example.tuneup.StudioCategory"
+        android:label="fragment_studio_category"
+        tools:layout="@layout/fragment_studio_category" />
 </navigation>
