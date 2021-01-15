@@ -41,13 +41,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.module.AppGlideModule;
 
 
 import java.util.HashMap;
@@ -61,15 +59,19 @@ import static android.app.Activity.RESULT_OK;
 public class profile extends Fragment {
 
     private static final int IMAGE_REQUEST=1;
-    private Uri imageUri;
-    private StorageTask uploadTask;
+    private static final int AUDIO_REQUEST=2;
+    private Uri imageUri, tuneUri;
+    private StorageTask<UploadTask.TaskSnapshot> uploadTask;
     public static final String TAG = "TAG";
     CircleImageView profile_image;
     FirebaseFirestore fStore;
     TextView result;
     Button save, google;
+    ImageButton selectFile1, selectFile2, selectFile3;
     EditText mDesc;
     TextView fullName,email,phone;
+    FirebaseStorage storage;
+    FirebaseDatabase dataBase;
     StorageReference storageReference;
     String userId;
     FirebaseAuth fAuth;
@@ -77,6 +79,7 @@ public class profile extends Fragment {
     DatabaseReference reference;
     String mUri;
     String category;
+    ProgressDialog progressDialog;
 
 
     @Override
@@ -118,7 +121,6 @@ public class profile extends Fragment {
         phone = view.findViewById(R.id.phoneInput);
         fullName = view.findViewById(R.id.nameInput);
         email = view.findViewById(R.id.emailInput);
-        save = view.findViewById(R.id.save);
         profile_image=view.findViewById(R.id.profile_image);
 
         fAuth = FirebaseAuth.getInstance();
@@ -129,7 +131,8 @@ public class profile extends Fragment {
         user = fAuth.getCurrentUser();
         fuser=FirebaseAuth.getInstance().getCurrentUser();
 
-
+        dataBase = FirebaseDatabase.getInstance();
+        save = view.findViewById(R.id.save);
 
         DocumentReference documentReference = fStore.collection("users").document(userId);
         documentReference.addSnapshotListener(getActivity(), new EventListener<DocumentSnapshot>() {
@@ -145,12 +148,6 @@ public class profile extends Fragment {
             }
         });
 
-
-
-
-
-
-
         final NavController navController = Navigation.findNavController(view);
 
         ImageButton button3 = view.findViewById(R.id.backbutton);
@@ -163,13 +160,22 @@ public class profile extends Fragment {
 
         });
 
-
         profile_image.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 openImage();
             }
         });
 
+        selectFile1 = view.findViewById(R.id.imageButton2);
+        selectFile2 = view.findViewById(R.id.imageButton3);
+        selectFile3 = view.findViewById(R.id.imageButton4);
+
+
+        selectFile1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                selectTune();
+            }
+        });
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,14 +198,71 @@ public class profile extends Fragment {
                         Log.d(TAG, "onSuccess: user Profile up to date "+ userId);
                     }
                 });
+
+                if (tuneUri != null) {
+                    uploadTune(tuneUri);
+                }
             }
 
         });
-
-
-
-
     }
+
+    private void uploadTune(Uri tuneUri) {
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setTitle("Uploading file...");
+        progressDialog.setProgress(0);
+        progressDialog.show();
+
+
+        final String fileName = System.currentTimeMillis()+"";
+        storageReference.child("Tunes").child(fileName).putFile(tuneUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                String url = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+                DatabaseReference databaseReference= dataBase.getReference();
+                reference.child(fileName).setValue(url).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()) {
+                            Toast.makeText(getContext(), "File successfully uploaded", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        } else {
+                            Toast.makeText(getContext(), "File not successfully uploaded", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), "File not successfully uploaded", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                int currProgress = (int)(100 * snapshot.getBytesTransferred()/ snapshot.getTotalByteCount());
+                progressDialog.setProgress(currProgress);
+            }
+        });
+    }
+
+    private void selectTune() {
+        Intent intent = new Intent();
+        intent.setType("audio/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, AUDIO_REQUEST);
+    }
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        if (requestCode == AUDIO_REQUEST && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//            selectTune();
+//        } else {
+//            Toast.makeText(profile.this.getContext(), "Please provide permission to read files.", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     private void openImage() {
         Intent intent = new Intent();
@@ -236,14 +299,14 @@ public class profile extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
                     if(task.isSuccessful()){
-                    Uri downloadUri = task.getResult();
-                    mUri = downloadUri.toString();
+                        Uri downloadUri = task.getResult();
+                        mUri = downloadUri.toString();
 
 
-                    reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
-                    HashMap<String, Object> map = new HashMap<>();
-                    map.put("imageURL", mUri);
-                    reference.updateChildren(map);
+                        reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
+                        HashMap<String, Object> map = new HashMap<>();
+                        map.put("imageURL", mUri);
+                        reference.updateChildren(map);
 
 
 
@@ -270,7 +333,7 @@ public class profile extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == IMAGE_REQUEST && resultCode == RESULT_OK
-            && data != null && data.getData() != null){
+                && data != null){
             imageUri = data.getData();
 
             if(uploadTask != null && uploadTask.isInProgress()){
@@ -279,6 +342,8 @@ public class profile extends Fragment {
             }else{
                 uploadImage();
             }
+        } else if (requestCode == AUDIO_REQUEST && resultCode == RESULT_OK && data != null) {
+            tuneUri = data.getData();
         }
     }
 
