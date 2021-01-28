@@ -39,7 +39,9 @@ public class TeacherCategory extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_teacher_category,container,false);
+
 
         recyclerView = view.findViewById(R.id.recycler_view_teachers);
         recyclerView.setHasFixedSize(true);
@@ -48,6 +50,7 @@ public class TeacherCategory extends Fragment {
         mUsers = new ArrayList<>();
 
         readUsers();
+
         return view;
     }
 

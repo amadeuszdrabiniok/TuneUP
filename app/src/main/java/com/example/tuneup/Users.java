@@ -50,7 +50,7 @@ import java.util.HashMap;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Users extends AppCompatActivity {
-    private static final int IMAGE_REQUEST=1;
+    private static final int IMAGE_REQUEST = 1;
     private Uri imageUri;
     private StorageTask uploadTask;
     public static final String TAG = "TAG";
@@ -58,7 +58,7 @@ public class Users extends AppCompatActivity {
     FirebaseFirestore fStore;
 
     EditText mDesc;
-    TextView fullName,email,phone;
+    TextView fullName, email, phone;
     StorageReference storageReference;
     String userId;
     FirebaseAuth fAuth;
@@ -86,7 +86,7 @@ public class Users extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 
-                        Glide.with(getApplicationContext()).load(URL).into(profile_image);
+                Glide.with(getApplicationContext()).load(URL).into(profile_image);
 
 
             }
@@ -102,12 +102,11 @@ public class Users extends AppCompatActivity {
         fullName = findViewById(R.id.nameInput);
         email = findViewById(R.id.emailInput);
 
-        profile_image=findViewById(R.id.profile_image);
+        profile_image = findViewById(R.id.profile_image);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
-
 
 
         ImageButton button3 = findViewById(R.id.backbutton);
@@ -121,119 +120,20 @@ public class Users extends AppCompatActivity {
         });
 
 
-
         DocumentReference documentReference = fStore.collection("users").document(userId);
         documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                if(documentSnapshot.exists()){
+                if (documentSnapshot.exists()) {
                     phone.setText(documentSnapshot.getString("phone"));
                     fullName.setText(documentSnapshot.getString("fName"));
                     email.setText(documentSnapshot.getString("email"));
                     mDesc.setText(documentSnapshot.getString("Desc"));
-                    category=documentSnapshot.getString("category");
+                    category = documentSnapshot.getString("category");
                 }
             }
         });
 
 
-
-
-
-
-
-
-
-
-        profile_image.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                openImage();
-            }
-        });
-
-
-
     }
-
-    private void openImage() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, IMAGE_REQUEST);
-    }
-
-    private String getFileExtension(Uri uri){
-        ContentResolver contentResolver = getApplicationContext().getContentResolver();
-        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
-    }
-
-    private void uploadImage(){
-        final ProgressDialog pd =new ProgressDialog(getApplicationContext());
-        pd.setMessage("Uploading");
-        pd.show();
-
-        if(imageUri != null){
-            final StorageReference fileReference = storageReference.child(System.currentTimeMillis()
-                    +"_"+getFileExtension(imageUri));
-
-            uploadTask = fileReference.putFile(imageUri);
-            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if(!task.isSuccessful()){
-                        throw task.getException();
-                    }
-                    return fileReference.getDownloadUrl();
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if(task.isSuccessful()){
-                        Uri downloadUri = task.getResult();
-                        mUri = downloadUri.toString();
-
-
-                        reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
-                        HashMap<String, Object> map = new HashMap<>();
-                        map.put("imageURL", mUri);
-                        reference.updateChildren(map);
-
-
-
-                    }else {
-                        Toast.makeText(getApplicationContext(), "Failed!", Toast.LENGTH_SHORT).show();
-                    }
-                    pd.dismiss();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    pd.dismiss();
-                }
-            });
-
-        }else {
-            Toast.makeText(getApplicationContext(), "No Image selected", Toast.LENGTH_SHORT).show();
-
-        }
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == IMAGE_REQUEST && resultCode == RESULT_OK
-                && data != null && data.getData() != null){
-            imageUri = data.getData();
-
-            if(uploadTask != null && uploadTask.isInProgress()){
-                Toast.makeText(getApplicationContext(), "Upload in Progress", Toast.LENGTH_SHORT).show();
-
-            }else{
-                uploadImage();
-            }
-        }
-    }
-
-    }
+}
