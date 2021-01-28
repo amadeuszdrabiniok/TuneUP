@@ -12,8 +12,9 @@
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="521dp"
-            android:layout_height="945dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="center"
             android:src="@drawable/patter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
