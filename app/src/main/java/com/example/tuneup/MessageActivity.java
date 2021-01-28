@@ -67,6 +67,7 @@ public class MessageActivity extends AppCompatActivity {
     String userid, URL;
 
     APIService apiService;
+
     boolean notify = false;
 
     @Override
@@ -114,7 +115,6 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Userm user = dataSnapshot.getValue(Userm.class);
                 //username.setText(user.getUsername());
-
                 readMesagges(fuser.getUid(), userid, URL);
             }
 
@@ -194,7 +194,7 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Userm user = dataSnapshot.getValue(Userm.class);
                 if (notify) {
-                    sendNotifiaction(receiver, user.getUsername(), msg);
+                    sendNotifiaction(receiver, "Grzegorz", msg);
                 }
                 notify = false;
             }
