@@ -177,6 +177,18 @@ public class profile extends Fragment {
             }
         });
 
+        selectFile2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                selectTune();
+            }
+        });
+
+        selectFile3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                selectTune();
+            }
+        });
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -198,54 +210,57 @@ public class profile extends Fragment {
                         Log.d(TAG, "onSuccess: user Profile up to date "+ userId);
                     }
                 });
-
-                if (tuneUri != null) {
-                    uploadTune(tuneUri);
-                }
             }
 
         });
     }
 
-    private void uploadTune(Uri tuneUri) {
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setTitle("Uploading file...");
-        progressDialog.setProgress(0);
-        progressDialog.show();
+    private void uploadTune() {
+        final ProgressDialog pd =new ProgressDialog(getContext());
+        pd.setMessage("Uploading");
+        pd.show();
 
+        if(tuneUri != null){
+            final StorageReference fileReference = storageReference.child(System.currentTimeMillis()
+                    +"_"+getFileExtension(tuneUri));
 
-        final String fileName = System.currentTimeMillis()+"";
-        storageReference.child("Tunes").child(fileName).putFile(tuneUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                String url = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                DatabaseReference databaseReference= dataBase.getReference();
-                reference.child(fileName).setValue(url).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()) {
-                            Toast.makeText(getContext(), "File successfully uploaded", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
-                        } else {
-                            Toast.makeText(getContext(), "File not successfully uploaded", Toast.LENGTH_SHORT).show();
-                            progressDialog.dismiss();
-                        }
+            uploadTask = fileReference.putFile(tuneUri);
+            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if(!task.isSuccessful()){
+                        throw task.getException();
                     }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(), "File not successfully uploaded", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                int currProgress = (int)(100 * snapshot.getBytesTransferred()/ snapshot.getTotalByteCount());
-                progressDialog.setProgress(currProgress);
-            }
-        });
+                    return fileReference.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if(task.isSuccessful()){
+                        Uri downloadUri = task.getResult();
+                        mUri = downloadUri.toString();
+
+                        reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
+                        HashMap<String, Object> map = new HashMap<>();
+                        map.put("imageURL", mUri);
+                        reference.updateChildren(map);
+                    }else {
+                        Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                    }
+                    pd.dismiss();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    pd.dismiss();
+                }
+            });
+
+        }else {
+            Toast.makeText(getContext(), "No Image selected", Toast.LENGTH_SHORT).show();
+
+        }
     }
 
     private void selectTune() {
@@ -254,15 +269,6 @@ public class profile extends Fragment {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, AUDIO_REQUEST);
     }
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        if (requestCode == AUDIO_REQUEST && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//            selectTune();
-//        } else {
-//            Toast.makeText(profile.this.getContext(), "Please provide permission to read files.", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 
     private void openImage() {
         Intent intent = new Intent();
@@ -302,14 +308,10 @@ public class profile extends Fragment {
                         Uri downloadUri = task.getResult();
                         mUri = downloadUri.toString();
 
-
                         reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("imageURL", mUri);
                         reference.updateChildren(map);
-
-
-
                     }else {
                         Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
                     }
@@ -332,8 +334,7 @@ public class profile extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == IMAGE_REQUEST && resultCode == RESULT_OK
-                && data != null){
+        if(requestCode == IMAGE_REQUEST && resultCode == RESULT_OK && data != null){
             imageUri = data.getData();
 
             if(uploadTask != null && uploadTask.isInProgress()){
@@ -344,6 +345,13 @@ public class profile extends Fragment {
             }
         } else if (requestCode == AUDIO_REQUEST && resultCode == RESULT_OK && data != null) {
             tuneUri = data.getData();
+
+            if(uploadTask != null && uploadTask.isInProgress()){
+                Toast.makeText(getContext(), "Upload in Progress", Toast.LENGTH_SHORT).show();
+
+            }else{
+                uploadTune();
+            }
         }
     }
 
