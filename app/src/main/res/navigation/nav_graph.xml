@@ -87,9 +87,9 @@
         app:startDestination="@id/chat">
         <activity
             android:id="@+id/chat"
-            android:name="com.example.tuneup.chat"
+            android:name="com.example.tuneup.MessageActivity"
             android:label="activity_chat"
-            tools:layout="@layout/activity_chat" />
+            tools:layout="@layout/activity_message" />
     </navigation>
     <fragment
         android:id="@+id/othersProfile"

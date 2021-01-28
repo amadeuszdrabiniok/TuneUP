@@ -59,10 +59,12 @@ public class Users extends AppCompatActivity {
 
     EditText mDesc;
     TextView fullName, email, phone;
+    ImageButton goToMessageButton;
     StorageReference storageReference;
     String userId;
     FirebaseAuth fAuth;
     FirebaseUser user;
+    Userm userm;
     DatabaseReference reference;
     String mUri;
     String category;
@@ -75,7 +77,7 @@ public class Users extends AppCompatActivity {
         setContentView(R.layout.activity_users);
 
         intent = getIntent();
-        String userId = intent.getStringExtra("userid");
+        final String userId = intent.getStringExtra("userid");
         final String URL = intent.getStringExtra("URL");
         fuser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -101,6 +103,7 @@ public class Users extends AppCompatActivity {
         phone = findViewById(R.id.phoneInput);
         fullName = findViewById(R.id.nameInput);
         email = findViewById(R.id.emailInput);
+        goToMessageButton = findViewById(R.id.goToMessageButton);
 
         profile_image = findViewById(R.id.profile_image);
 
@@ -108,6 +111,15 @@ public class Users extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
 
+        goToMessageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MessageActivity.class);
+                intent.putExtra("userid", userId);
+                intent.putExtra("URL", URL);
+                startActivity(intent);
+            }
+        });
 
         ImageButton button3 = findViewById(R.id.backbutton);
         button3.setOnClickListener(new View.OnClickListener() {
