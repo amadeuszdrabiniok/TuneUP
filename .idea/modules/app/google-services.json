@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "823640536839",
+    "firebase_url": "https://tuneup-73291.firebaseio.com",
+    "project_id": "tuneup-73291",
+    "storage_bucket": "tuneup-73291.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:823640536839:android:d2f919c8d76adf6631b7a2",
+        "android_client_info": {
+          "package_name": "com.example.tuneup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "823640536839-jrda66ct2m9e3p80u354s15a9l90f54f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tuneup",
+            "certificate_hash": "88e7499bffd48ad9876a3cbb1e43d74c32b57cdb"
+          }
+        },
+        {
+          "client_id": "823640536839-vlej38agnflde2c96jr6s9ivf5gdns18.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tuneup",
+            "certificate_hash": "03f52d75ff248a139b1da493d6c92604a9983f67"
+          }
+        },
+        {
+          "client_id": "823640536839-705l78e2vreilm7gcnclia89be0f6ian.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhDUfHF2OdQ_5YM7vhePYmoYRYdV3ZAIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "823640536839-705l78e2vreilm7gcnclia89be0f6ian.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

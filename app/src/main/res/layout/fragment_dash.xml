@@ -14,8 +14,9 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="529dp"
-            android:layout_height="909dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="center"
             android:src="@drawable/patter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +70,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/teacherCategoryBtt"
+                        android:id="@+id/teacherCategoryBtn"
                         android:layout_width="450dp"
                         android:layout_height="175dp"
                         android:backgroundTint="#00FFFFFF"
@@ -82,7 +83,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/other1"
+                    android:id="@+id/band"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="5dp"
@@ -96,23 +97,25 @@
                         android:layout_height="81dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/teacher"
+                        android:src="@drawable/pexels_sebastian_ervi_1763075"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pexels_sebastian_ervi_1763075" />
 
                     <TextView
-                        android:id="@+id/textViewother2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewother1"
+                        android:layout_width="239dp"
+                        android:layout_height="42dp"
                         android:layout_marginTop="28dp"
-                        android:layout_marginEnd="72dp"
-                        android:text="Teacher"
+                        android:text="Band"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
                         android:textSize="30sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/otherCategoryBtt"
+                        android:id="@+id/bandCategoryBtt"
                         android:layout_width="450dp"
                         android:layout_height="175dp"
                         android:backgroundTint="#00FFFFFF"
@@ -120,13 +123,13 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.333"
+                        app:layout_constraintVertical_bias="0.32"
                         tools:visibility="invisible" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/other2"
+                    android:id="@+id/bandMember"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="5dp"
@@ -140,23 +143,25 @@
                         android:layout_height="81dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/teacher"
+                        android:src="@drawable/pexels_north_1407322"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pexels_north_1407322" />
 
                     <TextView
                         android:id="@+id/textViewother2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="28dp"
-                        android:layout_marginEnd="72dp"
-                        android:text="Teacher"
+                        android:layout_width="229dp"
+                        android:layout_height="41dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="Band member"
+                        android:textAlignment="center"
                         android:textSize="30sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/other2CategoryBtt"
+                        android:id="@+id/bandmemberCategoryBtt"
                         android:layout_width="450dp"
                         android:layout_height="175dp"
                         android:backgroundTint="#00FFFFFF"
@@ -169,7 +174,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/other3"
+                    android:id="@+id/sessionMusician"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="5dp"
@@ -179,27 +184,27 @@
 
                     <ImageView
                         android:id="@+id/imageViewother3"
-                        android:layout_width="130dp"
-                        android:layout_height="81dp"
+                        android:layout_width="125dp"
+                        android:layout_height="76dp"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/teacher"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/pexels_emre_kuzu_2111856"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pexels_emre_kuzu_2111856" />
 
                     <TextView
                         android:id="@+id/textViewother3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="249dp"
+                        android:layout_height="41dp"
                         android:layout_marginTop="28dp"
-                        android:layout_marginEnd="72dp"
-                        android:text="Teacher"
+                        android:text="Session musician"
                         android:textSize="30sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/other3CategoryBtt"
+                        android:id="@+id/sessionmusicianCategoryBtt"
                         android:layout_width="450dp"
                         android:layout_height="175dp"
                         android:backgroundTint="#00FFFFFF"
@@ -212,7 +217,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/other4"
+                    android:id="@+id/Studio"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="5dp"
@@ -226,23 +231,24 @@
                         android:layout_height="81dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/teacher"
+                        android:src="@drawable/pexels_pixabay_164907"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pexels_pixabay_164907" />
 
                     <TextView
                         android:id="@+id/textViewother4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="244dp"
+                        android:layout_height="42dp"
                         android:layout_marginTop="28dp"
-                        android:layout_marginEnd="72dp"
-                        android:text="Teacher"
+                        android:text="Studio"
+                        android:textAlignment="center"
                         android:textSize="30sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/other4CategoryBtt"
+                        android:id="@+id/studioCategoryBtt"
                         android:layout_width="450dp"
                         android:layout_height="175dp"
                         android:backgroundTint="#00FFFFFF"
@@ -255,7 +261,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/other5"
+                    android:id="@+id/songwriter"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="5dp"
@@ -269,23 +275,24 @@
                         android:layout_height="81dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/teacher"
+                        android:src="@drawable/pexels_brett_jordan_839237"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pexels_brett_jordan_839237" />
 
                     <TextView
                         android:id="@+id/textViewother5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="244dp"
+                        android:layout_height="44dp"
                         android:layout_marginTop="28dp"
-                        android:layout_marginEnd="72dp"
-                        android:text="Teacher"
+                        android:text="Songwriter"
+                        android:textAlignment="center"
                         android:textSize="30sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/other5CategoryBtt"
+                        android:id="@+id/songwriterCategoryBtt"
                         android:layout_width="450dp"
                         android:layout_height="175dp"
                         android:backgroundTint="#00FFFFFF"
@@ -298,7 +305,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/other6"
+                    android:id="@+id/producer"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="5dp"
@@ -312,9 +319,10 @@
                         android:layout_height="81dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/teacher"
+                        android:src="@drawable/pexels_davis_sanchez_3916376"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/pexels_davis_sanchez_3916376" />
 
                     <TextView
                         android:id="@+id/textViewother6"
@@ -322,56 +330,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="28dp"
                         android:layout_marginEnd="72dp"
-                        android:text="Teacher"
+                        android:text="Producer"
                         android:textSize="30sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/other6CategoryBtt"
-                        android:layout_width="450dp"
-                        android:layout_height="175dp"
-                        android:backgroundTint="#00FFFFFF"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.333"
-                        tools:visibility="invisible" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/other7"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#BFFFFFFF">
-
-                    <ImageView
-                        android:id="@+id/imageViewother7"
-                        android:layout_width="130dp"
-                        android:layout_height="81dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/teacher"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textViewother7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="28dp"
-                        android:layout_marginEnd="72dp"
-                        android:text="Teacher"
-                        android:textSize="30sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Button
-                        android:id="@+id/other7CategoryBtt"
+                        android:id="@+id/producerCategoryBtt"
                         android:layout_width="450dp"
                         android:layout_height="175dp"
                         android:backgroundTint="#00FFFFFF"

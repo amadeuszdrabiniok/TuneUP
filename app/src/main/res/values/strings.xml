@@ -1,4 +1,27 @@
 <resources>
-    <string name="app_name">TuneUP</string>
+    <string name="app_name">TuneUP!</string>
     <string name="name">TuneUP</string>
+    <string name="sendButton">Wyślij</string>
+    <string name="messagePlaceholder">Message will appear here!</string>
+    <string name="messageInputPlaceholder">Wpisz wiadomość tutaj!</string>
+
+    <string-array name="categories">
+        <item>Teacher</item>
+        <item>Band</item>
+        <item>Band member</item>
+        <item>Session musician</item>
+        <item>Studio</item>
+        <item>Songwriter</item>
+        <item>Producer</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="Creators">
+        Korneliusz Dyszczyński
+        Amadeusz Drabiniok
+        Mateusz Kowalski
+
+    </string>
+
 </resources>

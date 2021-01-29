@@ -1,5 +1,6 @@
 package com.example.tuneup;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,13 +15,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class Settings extends Fragment {
-
-
-    public Settings() {
-        // Required empty public constructor
-    }
+    Button mCreateBtn;
+    FirebaseAuth fAuth;
 
 
 
@@ -29,6 +29,7 @@ public class Settings extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_settings, container, false);
+
     }
 
     @Override
@@ -46,6 +47,19 @@ public class Settings extends Fragment {
 
 
         });
+
+        mCreateBtn = view.findViewById(R.id.logout);
+
+
+        mCreateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getActivity(),Register.class));
+
+            }
+        });
     }
+
 
 }
