@@ -1,6 +1,6 @@
 # TuneUP
 
-Simple Android app to connect people of music. Made for classes.
+Simple Android app to connect people of music.
 
 ## Usage
 
